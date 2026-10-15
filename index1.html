@@ -7,12 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
@@ -251,7 +245,7 @@
             <h2>Contact Us</h2>
             <p>Lorem ipsum dolor sit amet consectetur.</p>
         </div>
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" novalidate>
             <div class="contact-form-left">
                 <input type="text" name="name" placeholder="Your Name*">
                 <input type="email" name="email" placeholder="Your Email*">
@@ -259,7 +253,7 @@
             </div>
             <textarea name="message" placeholder="Your Message*"></textarea>
         </form>
-        <p id="form-message"></p>
+        <p class="form-message" id="form-message"></p>
         <button class="btn" type="submit" form="contact-form">Send Message</button>
     </section>
 
@@ -282,24 +276,60 @@
     <script src="script.js"></script>
 </body>
 </html>
-<!-- ]Look, we built the app, but regarding the mobile version—I got about halfway through it yesterday and there were still a few things left to do. Now's the time to go finish them up.We’ve built up to the "About" section together, and now we need to build the "About" section itself; you can see it in the code.
-!-- I'm building a website from scratch to learn HTML/CSS, guided step-by-step — you explain concepts and I write the code myself, you don't write it for me. Project is at C:\my.wk\new.wk (index1.html + style1.css).
 
-    Progress so far:
-    1. Navbar — done. Dark bar, gold italic "Start Bootstrap" brand left, uppercase nav links right, flexbox space-between, hover fade. Not responsive (no hamburger/media queries). No custom fonts yet. Known bug not yet cleaned up: a stray invalid `background: position 4px;;` line and an unintended hero-photo background-image leaking onto the navbar.
-    2. Hero section — done.
-    3. Services section — mostly done (icon circles are plain gold circles, real icon glyphs deferred).
-    4. Portfolio section — fully done, including a working hover effect (gold semi-transparent overlay with a "+" that fades in via ::after + :hover).
-    5. About section (timeline) — HTML + CSS done: vertical line (.timeline::before), 4 dated entries with circular photos centered on the line and alternating left/right text (:nth-child(odd/even)), plus a 5th gold "Be Part Of Our Story!" CTA circle. Matches the target reference closely.
-       - OPEN, UNRESOLVED: the 4 timeline photos have a light gray border baked into the actual image files (confirmed by inspecting the raw jpg — not a CSS problem). We started a fix: wrap each `<img>` in a `.timeline-photo` div sized/circled with `overflow:hidden`, then scale the inner `<img>` to ~130% and re-center it so the border gets clipped outside the visible circle. This was explained but never actually implemented in the file — HTML still has the old unwrapped `<img>` structure.
-    6. Team section — HTML + CSS done and matches the target closely: `.team` (centered, gray background), `.team-grid` (flex row of 3 `.team-member` cards, each with a circular photo via `border-radius:50%` + `object-fit:cover`, `<h3>` name, gray `<p>` role, and `.team-social` — 3 plain black circle placeholder links, no icon glyphs yet), plus a closing lorem paragraph. Real names used: Parveen Anand (Lead Designer, "Parveen Anand.jpg"), Diana Petersen (Lead Marketer, "Diana Petersen.jpg"), Larry Parker (Lead Developer, "Larry Parker.jpg").
-    7. Clients/logos section — HTML + CSS written (`.clients` flex row, `.client-logo img` with `max-height:40px` and `filter: grayscale(100%) opacity(0.6)`), using real SVG files already in the folder (microsoft.svg, google.svg, facebook.svg, ibm.svg). NOT YET VISUALLY VERIFIED — last screenshot attempt came back completely blank (likely a screenshot-capture issue, not confirmed as a real rendering bug) and was never resolved. Re-check this by opening index1.html directly in a browser before assuming it's broken.
+<!-- 
+I'm a beginner learning HTML, CSS and JavaScript. My project is a one-page agency website (a clone of the Start Bootstrap "Agency" template) in C:\my.wk\new.wk, with three files: index1.html, style1.css and script.js. My manager asked me to use AI to add JavaScript, but my goal is to LEARN, so explain everything.
 
-    Deferred items (not started):
-    - Real icon glyphs for the services circles and team social icons
-    - Custom Google Fonts (script font for brand, sans-serif for nav links) — note: headings currently render in default serif (Times) site-wide since no font-family is set anywhere; this will fix that too
-    - Responsive navbar (media
-    - Contact section (next in template order after Team/Clients)
+## How to work with me
+- Reply in simple English. Show one small step at a time, explain it, tell me how to test it in the browser (and what to look for in the Console), then STOP and wait until I say "next".
+- You write the code for me (my manager asked for that), but explain the "why" and which HTML/CSS it connects to.
+- Keep replies brief. Don't guess what I mean: if my message is unclear, ask one short question.
+- Don't touch git (no commits, branches or merges).
+- Read the real files before changing them, and tell me exactly which files you edited.
+- If you can't verify something, say so instead of guessing.
 
-    Continue guiding me the same way: explain the concept, have me write the code, review what I paste, correct mistakes, don't skip ahead. If I say I'm confused or lost, drop to a fill-in-the-blank skeleton first; if I ask a second time, just write the code directly so I can see it, but keep explaining the "why" alongside it. Before moving to a "next stage," check the actual file to confirm the previous step was really written in. Pick up with: (1) verifying the clients/logos section actually renders correctly, (2) finishing the About timeline photo border fix, then (3) moving to Contact. -->
-    <!-- [Image #4] [Image #5] [Image #6] [Image #7] [Image #8] [Image #9] [Image #10] [Image #11 -->
+## Project state (everything below is finished and confirmed working)
+HTML/CSS: fixed navbar (Pacifico brand, Montserrat text, Font Awesome icons), hero, services, portfolio (hover overlay), About timeline, team, client logos, contact form, footer, and mobile styles in one @media (max-width:768px) block.
+
+script.js (about 140 lines, six features, all follow the same pattern: listen for an event, add or remove a CSS class, CSS does the visuals):
+1. Mobile menu: the .navbar-toggle button toggles class "open" on .navbar-menu (CSS slides it with max-height + transition). Clicking a menu link removes "open".
+2. Active link: on scroll, finds the current section (section[id], scrollY >= offsetTop - 100) and gives only its .navbar-link the class "active" (gold).
+3. Dark navbar: on scroll, toggles "scrolled" on .navbar when scrollY > 50. CSS gives it a dark background; on wide screens the menu sits 8px lower at the top (padding-top 28px, 20px when scrolled).
+4. Back-to-top button (.back-to-top): toggles "show" when scrollY > 300; click calls window.scrollTo({top:0, behavior:"smooth"}).
+5. Contact form (#contact-form, with novalidate): preventDefault on submit, validates name, email (regex), phone (regex), message in that order, shows a red message in #form-message and adds "invalid" to the bad field; on success shows a green message and resets the form. The Send button sits outside the form and is linked with form="contact-form".
+6. Fade-in: IntersectionObserver adds "visible" to .service-card, .portfolio-item, .team-member and .timeline-item (which get class "reveal") when 15% is on screen; reveals once.
+
+Also done in HTML/CSS: sections have ids (#services, #portfolio, #about, #team, #contact) and html { scroll-behavior: smooth; scroll-padding-top: 80px }.
+
+## Concepts I've learned so far
+querySelector, querySelectorAll, addEventListener, classList (add/remove/toggle), forEach, window.scrollY, window.scrollTo, event.preventDefault, functions, if/return, regular expressions (basic), IntersectionObserver, CSS transitions and the "JS changes the class, CSS decides the look" pattern.
+
+## Known notes and leftovers
+- The form shows "message sent" but sends nothing: there is no server.
+- index1.html still has <title>Document</title> and no <!DOCTYPE html>.
+- I once reported menu-link hover staying white; it worked in a headless Chrome test, so it was probably a cached or different copy. Hard refresh with Ctrl+Shift+R first.
+- Opening the page from file:/// shows a harmless Console warning about "unsafe attempt to load URL ... 'file:' URLs are treated as unique security origins" when links or forms reload the page.
+- I tried a shrinking-navbar effect and asked to revert it; it is not in the code. -->
+
+<!-- 
+I'm a beginner with JavaScript. This project is built with HTML and CSS (index1.html and style1.css) and already has a script.js file. My manager asked me to add JavaScript to the site. My goal is to learn, so please explain as you go.
+
+  Step 1 - Analysis (do not change any files yet):
+  - Read index1.html, style1.css and script.js.
+  - Tell me what script.js currently does, and whether it is linked in index1.html with a script tag.
+  - List places where JavaScript could improve the site (hover effects, mobile menu, smooth scrolling, form validation, etc.). For each, say where it is, why it needs JS, and how hard it is for a beginner. Sort from easiest to hardest.
+
+  Step 2 - Teaching:
+  I will pick one item. Before writing code, explain the concepts it needs in simple terms.
+
+  Step 3 - Implementation:
+  Write the code in small pieces with comments and explain each piece. Add to script.js, and do not rename any files.
+
+  Step 4 - Testing:
+  Tell me how to test in the browser and what to check in the Console.
+
+  Rules:
+  - Explain in simple language, in Persian (Farsi) if possible, but keep code and comments in English.
+  - Wait for my confirmation after each step.
+  - Do not touch git (no commits, branches, merges). I will do that myself.
+  - If you're not sure about something, tell me instead of guessing. -->
