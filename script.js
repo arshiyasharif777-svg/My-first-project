@@ -140,3 +140,193 @@ revealItems.forEach(function (item) {
   item.classList.add("reveal");
   revealObserver.observe(item);
 });
+
+// ===== "Tell Me More" button: text changes on hover =====
+
+const heroButton = document.querySelector(".hero .btn");
+const originalText = heroButton.textContent;
+const hoverText = "Let's Go";
+let swapTimer;
+
+// keep the button the same width so it does not jump when the text changes
+heroButton.style.minWidth = heroButton.offsetWidth + "px";
+heroButton.style.textAlign = "center";
+heroButton.style.transition = "opacity 0.2s ease, transform 0.2s ease, background-color 0.3s, color 0.3s";
+
+// fade the old text out and slide it up, swap the text, then fade the new one in from below
+function swapText(newText) {
+  clearTimeout(swapTimer);
+  heroButton.style.opacity = "0";
+  heroButton.style.transform = "translateY(-8px)";
+
+  swapTimer = setTimeout(function () {
+    heroButton.textContent = newText;
+    heroButton.style.transition = "none"; // jump to the start position without animating
+    heroButton.style.transform = "translateY(8px)";
+    heroButton.offsetWidth; // force the browser to apply the line above
+    heroButton.style.transition = "opacity 0.2s ease, transform 0.2s ease, background-color 0.3s, color 0.3s";
+    heroButton.style.opacity = "1";
+    heroButton.style.transform = "translateY(0)";
+  }, 200);
+}
+
+heroButton.addEventListener("mouseenter", function () {
+  swapText(hoverText);
+});
+
+heroButton.addEventListener("mouseleave", function () {
+  swapText(originalText);
+});
+
+// ===== Animated number counters =====
+
+const counters = document.querySelectorAll(".counter");
+
+// count from 0 up to the number in data-target over about 2 seconds
+function runCounter(counter) {
+  const target = Number(counter.dataset.target);
+  const duration = 2000;
+  const startTime = performance.now();
+
+  function update(now) {
+    // progress goes from 0 to 1; the easing makes the end slow down
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    counter.textContent = Math.round(target * eased);
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+// start each counter once, when it scrolls into view
+const counterObserver = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      runCounter(entry.target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+counters.forEach(function (counter) {
+  counterObserver.observe(counter);
+});
+
+// ===== Dark mode =====
+
+const themeButton = document.querySelector(".theme-toggle");
+const themeIcon = themeButton.querySelector("i");
+
+// show a sun while dark mode is on (click = go light), a moon otherwise
+function applyTheme(isDark) {
+  document.body.classList.toggle("dark", isDark);
+  themeIcon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+}
+
+// remember the choice; localStorage can fail (private mode), so wrap it in try/catch
+function readSavedTheme() {
+  try {
+    return localStorage.getItem("theme");
+  } catch (error) {
+    return null;
+  }
+}
+
+const savedTheme = readSavedTheme();
+if (savedTheme) {
+  applyTheme(savedTheme === "dark");
+} else {
+  // first visit: follow the system setting
+  applyTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+}
+
+themeButton.addEventListener("click", function () {
+  const goDark = !document.body.classList.contains("dark");
+  applyTheme(goDark);
+  try {
+    localStorage.setItem("theme", goDark ? "dark" : "light");
+  } catch (error) {
+    // saving failed; the theme still changed for this visit
+  }
+});
+
+// ===== Portfolio filter =====
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+const portfolioItems = document.querySelectorAll(".portfolio-item");
+
+filterButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    const chosen = button.dataset.filter;
+
+    // only the clicked button looks active
+    filterButtons.forEach(function (other) {
+      other.classList.toggle("active", other === button);
+    });
+
+    // hide the items from other categories, show (with a fade) the matching ones
+    portfolioItems.forEach(function (item) {
+      const matches = chosen === "all" || item.dataset.category === chosen;
+      item.classList.toggle("filtered-out", !matches);
+
+      item.classList.remove("filter-show");
+      if (matches) {
+        item.offsetWidth; // restart the animation if it already ran
+        item.classList.add("filter-show");
+      }
+    });
+  });
+});
+
+// ===== Smooth scroll for menu links =====
+
+menuLinks.forEach(function (link) {
+  link.addEventListener("click", function (event) {
+    // find the section this link points to, e.g. "#about" -> the element with id "about"
+    const target = document.querySelector(link.getAttribute("href"));
+
+    if (target) {
+      event.preventDefault(); // stop the instant jump
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
+
+// ===== Typing effect on the hero title =====
+
+const heroTitle = document.querySelector(".hero-title");
+const fullTitle = heroTitle.textContent;
+
+// skip the animation for people who asked their system for less motion
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  // keep the title's height so the page below does not jump while typing
+  heroTitle.style.minHeight = heroTitle.offsetHeight + "px";
+  heroTitle.textContent = "";
+
+  // the typed letters go in this text node, with the blinking cursor right after it
+  const typedText = document.createTextNode("");
+  const cursor = document.createElement("span");
+  cursor.className = "typing-cursor";
+  cursor.textContent = "|";
+  heroTitle.appendChild(typedText);
+  heroTitle.appendChild(cursor);
+
+  let letterIndex = 0;
+
+  const typingTimer = setInterval(function () {
+    letterIndex++;
+    typedText.textContent = fullTitle.slice(0, letterIndex);
+
+    if (letterIndex >= fullTitle.length) {
+      clearInterval(typingTimer);
+      // let the cursor blink for a moment, then remove it
+      setTimeout(function () {
+        cursor.remove();
+      }, 2000);
+    }
+  }, 80);
+}

@@ -23,11 +23,11 @@
             <button class="navbar-toggle" type="button">Menu <i class="fa-solid fa-bars"></i></button>
             <div class="navbar-menu">
                 <ul class="navbar-list">
-                    <li class="navbar-item"><a class="navbar-link" href="#">Services</a></li>
-                    <li class="navbar-item"><a class="navbar-link" href="#">Portfolio</a></li>
-                    <li class="navbar-item"><a class="navbar-link" href="#">About</a></li>
-                    <li class="navbar-item"><a class="navbar-link" href="#">Team</a></li>
-                    <li class="navbar-item"><a class="navbar-link" href="#">Contact</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="#services">Services</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="#portfolio">Portfolio</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="#about">About</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="#team">Team</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>  
@@ -41,7 +41,7 @@
     </section>
 
 
-    <SEction class="services">
+    <SEction class="services" id="services">
         <Div>
             <H2 class="tth">
                 Services
@@ -70,40 +70,47 @@
     </SEction>
 
     
-    <section class="portfolio">
+    <section class="portfolio" id="portfolio">
         <div class="container">
             <div class="portfolio-title">
                 <h2>Portfolio</h2>
                 <p>Lorem ipsum dolor sit amet consectetur.</p>
             </div>    
 
+            <div class="portfolio-filters">
+                <button class="filter-btn active" type="button" data-filter="all">All</button>
+                <button class="filter-btn" type="button" data-filter="design">Design</button>
+                <button class="filter-btn" type="button" data-filter="branding">Branding</button>
+                <button class="filter-btn" type="button" data-filter="web-photo">Web &amp; Photo</button>
+            </div>
+
             <div  class="portfolio-grid">
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-category="design">
                     <img src="1.jpg" alt="Threads">
                         <h3>Threads</h3>
                         <p>Illustration</p>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-category="design">
                     <img src="2.jpg" alt="Explore">
                         <h3>Explore</h3>
                         <p>Graphic Design</p>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-category="branding">
                     <img src="3.jpg" alt="Finish">
                         <h3>Finish</h3>
                         <p>Identity</p>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-category="branding">
                     <img src="4.jpg" alt="Lines">
                         <h3>Lines</h3>
                         <p>Branding</p>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-category="web-photo">
                     <img src="5.jpg" alt="Southwest">
                         <h3>Southwest</h3>
                         <p>Website Design</p>
                 </div>
-                <div class="portfolio-item">
+                <div class="portfolio-item" data-category="web-photo">
                     <img src="6.jpg" alt="Window">
                         <h3>Window</h3>
                         <p>Photography</p>
@@ -113,7 +120,7 @@
     </section>
 
 
-    <section class="about">
+    <section class="about" id="about">
         <div>
             <div>
                 <h2>About</h2>
@@ -158,7 +165,7 @@
             </div>
         </div>
     </section>
-    <section class="team">
+    <section class="team" id="team">
             <div class="team-ti">
                 <div>
                     <h2>Our Amazing Team</h2>
@@ -208,6 +215,21 @@
 
     </section>
    
+    <section class="stats">
+        <div class="stat">
+            <span class="counter" data-target="120">0</span><span class="stat-plus">+</span>
+            <p>Projects</p>
+        </div>
+        <div class="stat">
+            <span class="counter" data-target="85">0</span><span class="stat-plus">+</span>
+            <p>Clients</p>
+        </div>
+        <div class="stat">
+            <span class="counter" data-target="15">0</span><span class="stat-plus">+</span>
+            <p>Years of Experience</p>
+        </div>
+    </section>
+
     <section class="clients">
         <div class="client-logo">
             <img src="microsoft.svg" alt="Microsoft">
@@ -224,20 +246,21 @@
     </section>
 
 
-    <section class="contact">
+    <section class="contact" id="contact">
         <div>
             <h2>Contact Us</h2>
             <p>Lorem ipsum dolor sit amet consectetur.</p>
         </div>
-        <form class="contact-form">
+        <form class="contact-form" id="contact-form">
             <div class="contact-form-left">
-                <input type="text" placeholder="Your Name*">
-                <input type="email" placeholder="Your Email*">
-                <input type="text" placeholder="Your Phone*">
+                <input type="text" name="name" placeholder="Your Name*">
+                <input type="email" name="email" placeholder="Your Email*">
+                <input type="text" name="phone" placeholder="Your Phone*">
             </div>
-            <textarea name="text_area" placeholder="Your Message*"></textarea>
+            <textarea name="message" placeholder="Your Message*"></textarea>
         </form>
-        <button class="btn" type="submit">Send Message</button> 
+        <p id="form-message"></p>
+        <button class="btn" type="submit" form="contact-form">Send Message</button>
     </section>
 
     <footer class="footer">
@@ -252,8 +275,11 @@
             <a href="#">Terms of Use</a>
         </div>
     </footer>
-    
-    
+    <button class="back-to-top" type="button" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><i class="fa-solid fa-moon"></i></button>
+
+    <script src="script.js"></script>
 </body>
 </html>
 <!-- ]Look, we built the app, but regarding the mobile version—I got about halfway through it yesterday and there were still a few things left to do. Now's the time to go finish them up.We’ve built up to the "About" section together, and now we need to build the "About" section itself; you can see it in the code.
